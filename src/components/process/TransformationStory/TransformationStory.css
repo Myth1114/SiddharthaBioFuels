@@ -1,0 +1,99 @@
+.transformation-story {
+  overflow: hidden;
+}
+
+.transformation-story__intro {
+  max-width: var(--container-narrow);
+}
+
+.transformation-story__stages {
+  margin-block-start: var(--space-8);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.transformation-story__stage {
+  display: grid;
+  gap: var(--space-5);
+  padding-block: var(--space-6);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.transformation-story__stage-meta {
+  display: grid;
+  grid-template-columns: var(--space-7) 1fr;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.transformation-story__number {
+  color: var(--color-material);
+  font-family: var(--font-heading);
+  font-size: var(--font-size-heading-3);
+  font-weight: var(--font-weight-semibold);
+}
+
+.transformation-story__stage-meta .eyebrow {
+  color: var(--color-primary);
+}
+
+.transformation-story__stage-content {
+  --flow-space: var(--space-3);
+
+  max-width: var(--text-measure);
+}
+
+.transformation-story__stage-content p {
+  color: var(--color-text-muted);
+}
+
+.transformation-story__notice {
+  max-width: var(--text-measure);
+  margin-block-start: var(--space-6);
+  color: var(--color-text-muted);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .transformation-story__stage {
+    transition: padding-inline var(--duration-base) var(--ease-standard),
+      background-color var(--duration-base) var(--ease-standard);
+  }
+
+  .transformation-story__stage:hover {
+    padding-inline: var(--space-4);
+    background-color: var(--color-surface);
+  }
+}
+
+@media (min-width: 48rem) {
+  .transformation-story__intro {
+    display: grid;
+    max-width: none;
+    grid-template-columns: 1.2fr 0.8fr;
+    column-gap: var(--space-8);
+  }
+
+  .transformation-story__intro .eyebrow,
+  .transformation-story__intro .section-title {
+    grid-column: 1;
+  }
+
+  .transformation-story__intro .body-lg {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: end;
+  }
+
+  .transformation-story__stage {
+    grid-template-columns: minmax(12rem, 0.65fr) 1.35fr;
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  .transformation-story__stage-meta {
+    grid-template-columns: var(--space-8) 1fr;
+  }
+
+  .transformation-story__number {
+    font-size: var(--font-size-section-title);
+  }
+}

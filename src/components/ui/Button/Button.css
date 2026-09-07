@@ -1,0 +1,84 @@
+.button {
+  display: inline-flex;
+  min-height: 2.5rem;
+  padding: var(--space-2) var(--space-4);
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  color: var(--color-text);
+  background-color: transparent;
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--font-size-body-sm);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.button--primary {
+  color: var(--color-carbon);
+  background-color: var(--color-action);
+}
+
+.button--secondary {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+.button--outline {
+  color: inherit;
+  border-color: currentcolor;
+}
+
+.button--small {
+  min-height: 2.25rem;
+  padding: var(--space-1) var(--space-3);
+}
+
+.button--large {
+  min-height: 2.75rem;
+  padding: var(--space-2) var(--space-5);
+  font-size: var(--font-size-body-sm);
+}
+
+.button--full {
+  width: 100%;
+}
+
+.button:active:not(:disabled):not([aria-disabled="true"]) {
+  transform: translateY(0);
+}
+
+.button:disabled,
+.button[aria-disabled="true"] {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover:not(:disabled):not([aria-disabled="true"]) {
+    transform: translateY(calc(var(--space-1) * -0.5));
+  }
+
+  .button--primary:hover:not(:disabled):not([aria-disabled="true"]) {
+    background-color: var(--color-action-hover);
+    box-shadow: var(--shadow-button);
+  }
+
+  .button--secondary:hover:not(:disabled):not([aria-disabled="true"]) {
+    background-color: var(--color-primary-hover);
+  }
+
+  .button--outline:hover:not(:disabled):not([aria-disabled="true"]) {
+    color: var(--color-action);
+    border-color: var(--color-action);
+  }
+}

@@ -1,0 +1,144 @@
+:root {
+  /* Brand colors */
+  --color-carbon: #101510;
+  --color-industrial-green: #174c32;
+  --color-forest-green: #286747;
+  --color-flame-orange: #f47721;
+  --color-biomass-brown: #76523a;
+  --color-rice-husk: #d9c7a3;
+  --color-warm-paper: #f3f0e7;
+  --color-soft-grey: #a8aea7;
+  --color-white: #ffffff;
+
+  /* Functional colors */
+  --color-background: var(--color-warm-paper);
+  --color-surface: var(--color-white);
+  --color-surface-dark: var(--color-carbon);
+  --color-text: var(--color-carbon);
+  --color-text-inverse: var(--color-warm-paper);
+  --color-text-muted: #59615b;
+  --color-primary: var(--color-industrial-green);
+  --color-primary-hover: var(--color-forest-green);
+  --color-action: var(--color-flame-orange);
+  --color-action-hover: #d85d0d;
+  --color-material: var(--color-biomass-brown);
+  --color-border: rgb(16 21 16 / 16%);
+  --color-border-dark: rgb(243 240 231 / 18%);
+  --color-error: #a7291f;
+  --color-success: var(--color-industrial-green);
+
+  /* Typography families */
+  --font-heading: "Manrope", Arial, sans-serif;
+  --font-body: "Inter", Arial, sans-serif;
+
+  /* Typography scale */
+  --font-size-display: 2.25rem;
+  --font-size-page-title: 1.875rem;
+  --font-size-section-title: 1.5rem;
+  --font-size-heading-3: 1.125rem;
+  --font-size-heading-4: 1rem;
+  --font-size-body-lg: 1rem;
+  --font-size-body: 1rem;
+  --font-size-body-sm: 0.875rem;
+  --font-size-eyebrow: 0.6875rem;
+
+  /* Line heights */
+  --line-height-display: 0.96;
+  --line-height-heading: 1.08;
+  --line-height-body: 1.65;
+  --line-height-tight: 1.25;
+
+  /* Letter spacing */
+  --letter-spacing-display: -0.055em;
+  --letter-spacing-heading: -0.035em;
+  --letter-spacing-eyebrow: 0.16em;
+
+  /* Font weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  /* Responsive layout spacing */
+  --space-section: 4rem;
+  --space-section-compact: 3rem;
+  --page-gutter: 1rem;
+  --header-height: 4.75rem;
+
+  /* Container widths */
+  --container-wide: 90rem;
+  --container-default: 76rem;
+  --container-narrow: 52rem;
+  --text-measure: 43rem;
+
+  /* Borders */
+  --border-width: 1px;
+
+  /* Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.5rem;
+  --radius-pill: 999rem;
+
+  /* Shadows */
+  --shadow-header: 0 0.5rem 2rem rgb(16 21 16 / 8%);
+  --shadow-card: 0 1.5rem 4rem rgb(16 21 16 / 10%);
+  --shadow-button: 0 0.75rem 2rem rgb(244 119 33 / 20%);
+
+  /* Layer order */
+  --z-base: 1;
+  --z-overlay: 20;
+  --z-header: 50;
+  --z-menu: 60;
+  --z-toast: 70;
+
+  /* Motion durations */
+  --duration-fast: 160ms;
+  --duration-base: 300ms;
+  --duration-slow: 750ms;
+
+  /* Motion easing */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --opacity-disabled: 0.55;
+
+  --color-header-surface: rgb(243 240 231 / 94%);
+  --header-blur: 0.75rem;
+
+  --color-backdrop: rgb(16 21 16 / 72%);
+  --mobile-menu-width: 20rem;
+  --mobile-menu-viewport-width: 86vw;
+
+  --color-hero-overlay-strong: rgb(16 21 16 / 96%);
+  --color-hero-overlay-medium: rgb(16 21 16 / 72%);
+  --color-hero-overlay-light: rgb(16 21 16 / 20%);
+}
+@media (min-width: 48rem) {
+  :root {
+    --font-size-display: 3.75rem;
+    --font-size-page-title: 2.75rem;
+    --font-size-section-title: 2rem;
+    --font-size-heading-3: 1.25rem;
+    --font-size-body-lg: 1.0625rem;
+  }
+}
+
+@media (min-width: 75rem) {
+  :root {
+    --font-size-display: 4.25rem;
+    --font-size-page-title: 3rem;
+    --font-size-section-title: 2.25rem;
+  }
+}
