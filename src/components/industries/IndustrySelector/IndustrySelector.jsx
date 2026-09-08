@@ -37,8 +37,8 @@ function IndustrySelector() {
           </div>
 
           <p className="industry-showcase__introduction">
-            Explore how biomass briquettes may support different thermal
-            applications and operating environments.
+            Select an operating environment to see where biomass briquettes may
+            be considered.
           </p>
         </div>
 
@@ -101,42 +101,18 @@ function IndustrySelector() {
 
             <h3>{selectedIndustry.name}</h3>
 
-            <p className="industry-showcase__description">
-              {selectedIndustry.context}
+            <p className="industry-showcase__summary">
+              {selectedIndustry.summary}
             </p>
 
-            <div className="industry-showcase__information">
-              <div className="industry-showcase__information-row">
-                <p className="industry-showcase__information-label">
-                  Application
-                </p>
-
-                <p>{selectedIndustry.application}</p>
-              </div>
-
-              <div className="industry-showcase__information-row">
-                <p className="industry-showcase__information-label">
-                  Before switching fuel
-                </p>
-
-                <ul>
-                  {selectedIndustry.considerations.map((consideration) => (
-                    <li key={consideration}>{consideration}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <div className="industry-showcase__actions">
-              <Button as={Link} to="/request-a-quote" size="small">
-                Discuss Your Requirement
-              </Button>
-
-              <Link className="industry-showcase__text-link" to="/industries">
-                Explore all industries
-                <span aria-hidden="true">→</span>
-              </Link>
-            </div>
+            <Button
+              as={Link}
+              className="industry-showcase__button"
+              to="/industries"
+              size="small"
+            >
+              Explore Industry Applications
+            </Button>
           </div>
         </article>
       </Container>

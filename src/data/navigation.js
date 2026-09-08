@@ -1,7 +1,7 @@
 export const primaryNavigation = [
   {
-    label: "Product",
-    to: "/biomass-briquettes",
+    label: "Products",
+    to: "/products",
   },
   {
     label: "Industries",

@@ -1,17 +1,20 @@
 import brickKilnsImage from "../assets/images/industries/brick-kilns.png";
+import boilersImage from "../assets/images/industries/industrial-boilers.png";
 import foodProcessingImage from "../assets/images/industries/food-processing.png";
+import kitchensImage from "../assets/images/industries/hotels-hospitality.png";
 import textilesImage from "../assets/images/industries/textiles.png";
-import paperIndustriesImage from "../assets/images/industries/paper-industries.png";
-import hotelsHospitalityImage from "../assets/images/industries/hotels-hospitality.png";
-import industrialBoilersImage from "../assets/images/industries/industrial-boilers.png";
+import paperMillsImage from "../assets/images/industries/paper-industries.png";
 
 export const industries = [
   {
     id: "brick-kilns",
+    slug: "brick-kilns",
     name: "Brick Kilns",
     image: brickKilnsImage,
     imageAlt:
-      "Representative brick kiln using biomass briquettes through a mechanical fuel-feeding system",
+      "Representative brick kiln using biomass briquettes for industrial heating",
+    summary:
+      "Solid biomass fuel for compatible kiln-firing operations requiring sustained industrial heat.",
     context:
       "Brick production requires sustained thermal energy during firing. Biomass briquettes may provide an alternative solid-fuel option when the kiln and feeding arrangement are suitable.",
     application:
@@ -23,82 +26,101 @@ export const industries = [
     ],
   },
   {
-    id: "food-processing",
-    name: "Food Processing",
+    id: "boilers-thermal-plants",
+    slug: "boilers-thermal-plants",
+    name: "Boilers & Thermal Plants",
+    image: boilersImage,
+    imageAlt:
+      "Representative industrial boiler and thermal plant using biomass briquettes",
+    summary:
+      "Briquettes for compatible boilers and thermal systems used to generate process heat or steam.",
+    context:
+      "Industrial boilers and thermal plants serve different operating loads, pressures and fuel-feeding arrangements. Compatibility must be evaluated for the specific system.",
+    application:
+      "Process steam, hot water and industrial thermal-energy generation.",
+    considerations: [
+      "Boiler and burner configuration",
+      "Required thermal output and operating pressure",
+      "Fuel-feeding and ash-handling arrangements",
+    ],
+  },
+  {
+    id: "food-oil-processing",
+    slug: "food-oil-processing",
+    name: "Food & Oil Processing",
     image: foodProcessingImage,
     imageAlt:
-      "Representative food processing facility with a biomass briquette boiler and steam equipment",
+      "Representative food and oil processing facility with a biomass-fuel boiler",
+    summary:
+      "Process heat and steam for compatible food-production, drying and oil-processing equipment.",
     context:
-      "Food-processing facilities often require steam or hot water for cooking, drying, cleaning and other production activities.",
+      "Food and oil processing facilities may require steam or controlled heat for cooking, drying, cleaning, refining and related production activities.",
     application:
-      "Steam boilers, hot-water systems and process-heating equipment.",
+      "Steam boilers, drying equipment, hot-water systems and process-heating operations.",
     considerations: [
       "Required steam pressure and daily operating hours",
-      "Boiler compatibility and feeding system",
-      "Clean and organized fuel-storage conditions",
+      "Production hygiene and fuel-storage separation",
+      "Boiler compatibility and feeding method",
     ],
   },
   {
-    id: "textiles",
-    name: "Textiles",
+    id: "institutional-kitchens",
+    slug: "institutional-kitchens",
+    name: "Institutional Kitchens",
+    image: kitchensImage,
+    imageAlt:
+      "Representative institutional heating system using biomass briquettes",
+    summary:
+      "A solid-fuel option for compatible large-scale cooking and institutional hot-water systems.",
+    context:
+      "Institutional kitchens may serve hotels, hostels, hospitals, schools or other facilities with significant cooking and hot-water requirements.",
+    application:
+      "Large-scale cooking, central hot-water systems and compatible kitchen-heating equipment.",
+    considerations: [
+      "Available equipment and kitchen configuration",
+      "Daily and seasonal fuel demand",
+      "Safe fuel storage and handling space",
+    ],
+  },
+  {
+    id: "textile-chemical-industries",
+    slug: "textile-chemical-industries",
+    name: "Textile & Chemical Industries",
     image: textilesImage,
     imageAlt:
-      "Representative textile manufacturing facility using a biomass-fired boiler",
+      "Representative textile production facility using an industrial biomass boiler",
+    summary:
+      "Industrial steam and thermal energy for compatible textile and chemical-processing operations.",
     context:
-      "Textile production can use substantial thermal energy for dyeing, washing, finishing and drying processes.",
+      "Textile and chemical facilities can require controlled steam or heat for washing, dyeing, drying, finishing and other production stages.",
     application:
-      "Steam generation for dyeing, washing, finishing and fabric drying.",
+      "Steam generation, dyeing, washing, drying and compatible thermal-processing equipment.",
     considerations: [
+      "Required temperature and steam consistency",
       "Boiler load and production schedule",
-      "Required steam consistency",
-      "Fuel handling and ash-management arrangements",
+      "Process-specific safety and compatibility review",
     ],
   },
   {
-    id: "paper-industries",
-    name: "Paper Industries",
-    image: paperIndustriesImage,
+    id: "paper-mills",
+    slug: "paper-mills",
+    name: "Paper Mills",
+    image: paperMillsImage,
     imageAlt:
-      "Representative paper manufacturing facility with biomass briquettes and boiler equipment",
+      "Representative paper mill using biomass briquettes for process heat",
+    summary:
+      "Process steam and controlled heat for compatible paper-production and drying systems.",
     context:
-      "Paper manufacturing depends on process steam and controlled heat for drying and other production stages.",
+      "Paper manufacturing often depends on process steam and controlled heat during preparation, production and drying stages.",
     application: "Process-steam generation and paper-drying operations.",
     considerations: [
       "Continuous and peak boiler demand",
-      "Available fuel-storage space",
+      "Fuel storage and handling capacity",
       "Boiler and fuel-feed compatibility",
     ],
   },
-  {
-    id: "hotels-hospitality",
-    name: "Hotels & Hospitality",
-    image: hotelsHospitalityImage,
-    imageAlt:
-      "Representative hotel boiler room with biomass briquettes and hot-water tanks",
-    context:
-      "Hotels and hospitality facilities may require dependable hot water and steam for kitchens, rooms, cleaning and laundry operations.",
-    application:
-      "Central hot-water systems, laundry steam and kitchen heating.",
-    considerations: [
-      "Daily and seasonal hot-water demand",
-      "Available boiler-room and storage space",
-      "Fuel delivery and handling access",
-    ],
-  },
-  {
-    id: "industrial-boilers",
-    name: "Industrial Boilers",
-    image: industrialBoilersImage,
-    imageAlt:
-      "Representative industrial biomass boiler with mechanical briquette feeding equipment",
-    context:
-      "Biomass briquettes may be evaluated for compatible industrial boilers used across a range of manufacturing operations.",
-    application:
-      "General process steam, hot water and industrial thermal-energy systems.",
-    considerations: [
-      "Existing boiler and burner configuration",
-      "Required thermal output",
-      "Operating schedule and fuel-consumption pattern",
-    ],
-  },
 ];
+
+export function getIndustryBySlug(slug) {
+  return industries.find((industry) => industry.slug === slug);
+}
