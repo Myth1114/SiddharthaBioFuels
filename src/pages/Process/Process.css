@@ -778,8 +778,16 @@
   }
 
   .process-stage {
-    min-height: 72svh;
-    padding: 2rem 0;
+    min-height: 18rem;
+    padding: 2rem 0 3rem;
+  }
+
+  .process-stage:last-child {
+    min-height: 15rem;
+  }
+
+  .process-stage__number i {
+    min-height: 4rem;
   }
 
   .process-stage__content {
@@ -805,6 +813,14 @@
 
   .process-visual__diagram {
     height: 9.75rem;
+  }
+  .process-stage {
+    min-height: 16rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .process-stage:last-child {
+    min-height: 14rem;
   }
 }
 
