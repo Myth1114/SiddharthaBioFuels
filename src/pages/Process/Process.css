@@ -1,3 +1,7 @@
+/* ========================================
+   Process page
+======================================== */
+
 .process-page {
   color: var(--color-text, #101710);
   background-color: var(--color-background, #f3efe6);
@@ -13,7 +17,9 @@
   text-transform: uppercase;
 }
 
-/* Hero */
+/* ========================================
+   Hero
+======================================== */
 
 .process-page__hero {
   padding: 3rem 0 3.5rem;
@@ -81,7 +87,9 @@
   border-top: 1px solid var(--color-border, #d5d0c5);
 }
 
-/* Transformation line */
+/* ========================================
+   Transformation line
+======================================== */
 
 .process-line {
   padding: 4.5rem 0 5.5rem;
@@ -121,7 +129,12 @@
   display: grid;
   grid-template-columns: minmax(32rem, 1.15fr) minmax(22rem, 0.85fr);
   gap: 4rem;
-  align-items: start;
+  align-items: stretch;
+}
+
+.process-line__visual-column {
+  min-width: 0;
+  align-self: stretch;
 }
 
 .process-line__visual-sticky {
@@ -129,7 +142,9 @@
   top: 7rem;
 }
 
-/* Main visual */
+/* ========================================
+   Process visual
+======================================== */
 
 .process-visual {
   border: 1px solid var(--color-border, #d5d0c5);
@@ -198,6 +213,9 @@
   width: 100%;
   height: auto;
   min-height: 27rem;
+  margin-inline: auto;
+  transform-origin: center center;
+  will-change: transform;
 }
 
 .process-visual__flow-line,
@@ -209,7 +227,10 @@
 
 .process-visual__station {
   color: rgba(22, 88, 63, 0.26);
+  transform-box: fill-box;
+  transform-origin: center;
   transition: color 260ms ease, opacity 260ms ease;
+  will-change: transform, opacity;
 }
 
 .process-visual__station circle,
@@ -247,6 +268,16 @@
   fill: var(--color-accent, #f47621);
 }
 
+.process-visual__station path,
+.process-visual__station rect,
+.process-visual__station circle,
+.process-visual__station ellipse,
+.process-visual__briquette,
+.process-visual__briquette-end,
+.process-visual__scan-line {
+  will-change: transform, opacity;
+}
+
 .process-visual__material-particle {
   fill: var(--color-accent, #f47621);
 }
@@ -280,7 +311,9 @@
   border-top: 1px solid var(--color-border, #d5d0c5);
 }
 
-/* Written stages */
+/* ========================================
+   Written process stages
+======================================== */
 
 .process-line__stages {
   min-width: 0;
@@ -294,8 +327,8 @@
   padding: 2rem 0;
   opacity: 0.42;
   border-top: 1px solid var(--color-border, #d5d0c5);
-  transition: opacity 260ms ease;
   scroll-margin-top: 8rem;
+  transition: opacity 260ms ease;
 }
 
 .process-stage:last-child {
@@ -367,7 +400,9 @@
   border-top: 1px solid var(--color-border, #d5d0c5);
 }
 
-/* Verification */
+/* ========================================
+   Verification
+======================================== */
 
 .process-page__verification {
   padding: 4rem 0;
@@ -418,7 +453,9 @@
   border-radius: 50%;
 }
 
-/* CTA */
+/* ========================================
+   CTA
+======================================== */
 
 .process-page__cta {
   padding: 4.5rem 0;
@@ -472,7 +509,9 @@
   color: var(--color-accent, #f47621);
 }
 
-/* Medium screens */
+/* ========================================
+   Medium screens
+======================================== */
 
 @media (max-width: 75rem) {
   .process-page__hero-layout {
@@ -484,7 +523,9 @@
   }
 
   .process-line__layout {
-    grid-template-columns: minmax(26rem, 1fr) minmax(20rem, 0.8fr);
+    grid-template-columns:
+      minmax(26rem, 1fr)
+      minmax(20rem, 0.8fr);
     gap: 2.5rem;
   }
 
@@ -497,7 +538,9 @@
   }
 }
 
-/* Tablet and mobile */
+/* ========================================
+   Tablet
+======================================== */
 
 @media (max-width: 62rem) {
   .process-page__hero-layout,
@@ -510,23 +553,63 @@
   }
 
   .process-line__layout {
-    display: block;
+    position: relative;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .process-line__visual-column,
+  .process-line__stages {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .process-line__visual-column {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    pointer-events: none;
   }
 
   .process-line__visual-sticky {
-    position: static;
+    top: 5.75rem;
+    pointer-events: auto;
   }
 
   .process-line__stages {
-    margin-top: 2.5rem;
+    position: relative;
+    z-index: 1;
+    margin-top: 0;
+    padding-top: 30rem;
   }
 
   .process-stage {
-    min-height: auto;
-    padding: 2rem 0;
+    min-height: 68svh;
+    padding: 2.5rem 0;
+    opacity: 0.35;
+  }
+
+  .process-stage--active {
     opacity: 1;
   }
+
+  .process-visual {
+    background-color: var(--color-background, #f3efe6);
+    box-shadow: 0 1rem 2rem rgba(16, 32, 23, 0.08);
+  }
+
+  .process-visual__canvas {
+    min-height: 21rem;
+  }
+
+  .process-visual__diagram {
+    min-height: 18rem;
+  }
 }
+
+/* ========================================
+   Mobile
+======================================== */
 
 @media (max-width: 47rem) {
   .process-page__hero {
@@ -567,161 +650,6 @@
     font-size: 1.75rem;
   }
 
-  .process-visual__header {
-    padding: 0.85rem 1rem;
-  }
-
-  .process-visual__canvas {
-    min-height: 18rem;
-    padding: 0.5rem;
-  }
-
-  .process-visual__diagram {
-    min-height: 16rem;
-  }
-
-  .process-visual__active-label {
-    bottom: 1rem;
-    left: 1rem;
-  }
-
-  .process-visual__footer {
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 0.85rem 1rem;
-  }
-
-  .process-stage {
-    grid-template-columns: 2.25rem minmax(0, 1fr);
-    gap: 0.5rem;
-  }
-
-  .process-stage h3 {
-    font-size: 1.45rem;
-  }
-
-  .process-page__verification,
-  .process-page__cta {
-    padding: 3.25rem 0;
-  }
-
-  .process-page__verification h2,
-  .process-page__cta h2 {
-    font-size: 1.7rem;
-  }
-
-  .process-page__cta-layout {
-    padding: 1.5rem 1rem;
-  }
-
-  .process-page__cta-actions {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .process-line__progress span,
-  .process-visual__station,
-  .process-stage,
-  .process-visual__diagram * {
-    transition: none;
-    animation: none;
-  }
-}
-/* Sticky process experience */
-
-/*
-  The visual column must stretch to the full height of the written
-  stages. Otherwise, the sticky element has no vertical area in
-  which it can remain fixed.
-*/
-
-.process-line__layout {
-  align-items: stretch;
-}
-
-.process-line__visual-column {
-  min-width: 0;
-  align-self: stretch;
-}
-
-.process-line__visual-sticky {
-  position: sticky;
-  top: 7rem;
-}
-
-/* Compact sticky layout for tablet */
-
-@media (max-width: 62rem) {
-  .process-line__layout {
-    position: relative;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0;
-    align-items: stretch;
-  }
-
-  /*
-      Both columns occupy the same grid area.
-  
-      The stage column determines the total section height, allowing
-      the visual column to remain sticky for the complete journey.
-    */
-
-  .process-line__visual-column,
-  .process-line__stages {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .process-line__visual-column {
-    position: relative;
-    z-index: 2;
-    height: 100%;
-    pointer-events: none;
-  }
-
-  .process-line__visual-sticky {
-    position: sticky;
-    top: 5.75rem;
-    pointer-events: auto;
-  }
-
-  .process-line__stages {
-    position: relative;
-    z-index: 1;
-    margin-top: 0;
-    padding-top: 30rem;
-  }
-
-  .process-stage {
-    min-height: 68svh;
-    padding: 2.5rem 0;
-    opacity: 0.35;
-  }
-
-  .process-stage--active {
-    opacity: 1;
-  }
-
-  .process-visual {
-    background-color: var(--color-background, #f3efe6);
-    box-shadow: 0 1rem 2rem rgba(16, 32, 23, 0.08);
-  }
-
-  .process-visual__canvas {
-    min-height: 21rem;
-  }
-
-  .process-visual__diagram {
-    min-height: 18rem;
-  }
-}
-
-/* Compact sticky viewport for phones */
-
-@media (max-width: 47rem) {
   .process-line__visual-sticky {
     top: 4.75rem;
   }
@@ -744,8 +672,8 @@
   }
 
   .process-visual__canvas {
-    min-height: 13.5rem;
     height: 13.5rem;
+    min-height: 13.5rem;
     padding: 0.35rem;
   }
 
@@ -778,6 +706,8 @@
   }
 
   .process-stage {
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    gap: 0.5rem;
     min-height: 18rem;
     padding: 2rem 0 3rem;
   }
@@ -793,9 +723,34 @@
   .process-stage__content {
     align-self: start;
   }
+
+  .process-stage h3 {
+    font-size: 1.45rem;
+  }
+
+  .process-page__verification,
+  .process-page__cta {
+    padding: 3.25rem 0;
+  }
+
+  .process-page__verification h2,
+  .process-page__cta h2 {
+    font-size: 1.7rem;
+  }
+
+  .process-page__cta-layout {
+    padding: 1.5rem 1rem;
+  }
+
+  .process-page__cta-actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
 
-/* Extra-small phones */
+/* ========================================
+   Extra-small phones
+======================================== */
 
 @media (max-width: 24rem) {
   .process-line__visual-sticky {
@@ -807,13 +762,14 @@
   }
 
   .process-visual__canvas {
-    min-height: 12rem;
     height: 12rem;
+    min-height: 12rem;
   }
 
   .process-visual__diagram {
     height: 9.75rem;
   }
+
   .process-stage {
     min-height: 16rem;
     padding-bottom: 2.5rem;
@@ -824,9 +780,17 @@
   }
 }
 
-/* Reduced-motion fallback */
+/* ========================================
+   Reduced motion
+======================================== */
 
 @media (prefers-reduced-motion: reduce) {
+  .process-line__progress span,
+  .process-stage,
+  .process-visual__station {
+    transition: none;
+  }
+
   .process-line__visual-sticky {
     position: static;
   }
@@ -849,5 +813,16 @@
   .process-stage {
     min-height: auto;
     opacity: 1;
+  }
+
+  .process-visual__diagram,
+  .process-visual__station,
+  .process-visual__station path,
+  .process-visual__station rect,
+  .process-visual__station circle,
+  .process-visual__station ellipse {
+    transform: none !important;
+    animation: none;
+    transition: none;
   }
 }

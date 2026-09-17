@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -6,6 +6,7 @@ import Container from "../../components/layout/Container";
 import Button from "../../components/ui/Button";
 
 import { manufacturingStages } from "../../data/process";
+import { useProcessAnimation } from "../../hooks/useProcessAnimation";
 
 import "./Process.css";
 
@@ -28,6 +29,7 @@ function ProcessVisual({ activeStage }) {
       <div className="process-visual__header">
         <div>
           <p>Transformation line</p>
+
           <span>Residue to finished fuel</span>
         </div>
 
@@ -58,7 +60,7 @@ function ProcessVisual({ activeStage }) {
             d="M690 248 L708 260 L690 272"
           />
 
-          {/* Stage 01: residue */}
+          {/* Stage 01: residue sourcing */}
 
           <g className={getVisualStageClass("residue-sourcing", activeStage)}>
             <circle cx="70" cy="216" r="8" />
@@ -75,14 +77,16 @@ function ProcessVisual({ activeStage }) {
             </text>
           </g>
 
-          {/* Stage 02: preparation */}
+          {/* Stage 02: material preparation */}
 
           <g
             className={getVisualStageClass("material-preparation", activeStage)}
           >
             <rect x="140" y="205" width="72" height="105" rx="4" />
+
             <path d="M154 221 L198 291" />
             <path d="M198 221 L154 291" />
+
             <circle cx="176" cy="256" r="11" />
 
             <text x="176" y="338" textAnchor="middle">
@@ -90,12 +94,13 @@ function ProcessVisual({ activeStage }) {
             </text>
           </g>
 
-          {/* Stage 03: drying */}
+          {/* Stage 03: moisture reduction */}
 
           <g className={getVisualStageClass("moisture-reduction", activeStage)}>
             <rect x="247" y="215" width="85" height="90" rx="42" />
 
             <path d="M260 246 C273 232 285 260 298 246 C311 232 320 260 327 246" />
+
             <path d="M260 270 C273 256 285 284 298 270 C311 256 320 284 327 270" />
 
             <path d="M270 193 C263 181 276 174 270 162" />
@@ -111,6 +116,7 @@ function ProcessVisual({ activeStage }) {
 
           <g className={getVisualStageClass("compression", activeStage)}>
             <rect x="370" y="174" width="78" height="46" rx="3" />
+
             <rect x="370" y="298" width="78" height="30" rx="3" />
 
             <path d="M389 220 V242" />
@@ -146,6 +152,7 @@ function ProcessVisual({ activeStage }) {
 
           <g className={getVisualStageClass("cooling", activeStage)}>
             <path d="M520 287 H585" />
+
             <circle cx="533" cy="290" r="5" />
             <circle cx="552" cy="290" r="5" />
             <circle cx="571" cy="290" r="5" />
@@ -160,10 +167,11 @@ function ProcessVisual({ activeStage }) {
             </text>
           </g>
 
-          {/* Stage 06: quality */}
+          {/* Stage 06: quality checking */}
 
           <g className={getVisualStageClass("quality-checking", activeStage)}>
             <path d="M606 298 V206 H651 V298" />
+
             <path d="M613 234 H644" />
 
             <path className="process-visual__scan-line" d="M613 260 H644" />
@@ -175,11 +183,13 @@ function ProcessVisual({ activeStage }) {
             </text>
           </g>
 
-          {/* Stage 07: dispatch */}
+          {/* Stage 07: storage and dispatch */}
 
           <g className={getVisualStageClass("storage-dispatch", activeStage)}>
             <rect x="675" y="220" width="44" height="35" rx="2" />
+
             <rect x="683" y="183" width="36" height="35" rx="2" />
+
             <path d="M668 286 H726" />
             <path d="M676 286 V297" />
             <path d="M718 286 V297" />
@@ -189,29 +199,31 @@ function ProcessVisual({ activeStage }) {
             </text>
           </g>
 
+          {/* Material-flow particles */}
+
           <circle
-            className="process-visual__material-particle process-visual__material-particle--one"
+            className="process-visual__material-particle"
             cx="113"
             cy="260"
             r="4"
           />
 
           <circle
-            className="process-visual__material-particle process-visual__material-particle--two"
+            className="process-visual__material-particle"
             cx="225"
             cy="260"
             r="4"
           />
 
           <circle
-            className="process-visual__material-particle process-visual__material-particle--three"
+            className="process-visual__material-particle"
             cx="344"
             cy="260"
             r="4"
           />
         </svg>
 
-        <div className="process-visual__active-label">
+        <div className="process-visual__active-label" aria-live="polite">
           <span>{currentStage.label}</span>
 
           <strong>{currentStage.title}</strong>
@@ -231,6 +243,8 @@ function ProcessVisual({ activeStage }) {
 }
 
 function Process() {
+  const processRootRef = useRef(null);
+
   const [activeStage, setActiveStage] = useState(manufacturingStages[0].id);
 
   const activeStageIndex = useMemo(
@@ -238,69 +252,14 @@ function Process() {
     [activeStage]
   );
 
-  useEffect(() => {
-    const mobileQuery = window.matchMedia("(max-width: 62rem)");
-
-    let stageObserver;
-
-    function createStageObserver() {
-      if (stageObserver) {
-        stageObserver.disconnect();
-      }
-
-      const stageElements = document.querySelectorAll(
-        "[data-manufacturing-stage]"
-      );
-
-      if (!stageElements.length) {
-        return;
-      }
-
-      const isCompactLayout = mobileQuery.matches;
-
-      stageObserver = new IntersectionObserver(
-        (entries) => {
-          const visibleEntries = entries
-            .filter((entry) => entry.isIntersecting)
-            .sort(
-              (firstEntry, secondEntry) =>
-                firstEntry.boundingClientRect.top -
-                secondEntry.boundingClientRect.top
-            );
-
-          if (visibleEntries.length > 0) {
-            setActiveStage(visibleEntries[0].target.id);
-          }
-        },
-        {
-          root: null,
-
-          rootMargin: isCompactLayout
-            ? "-52% 0px -34% 0px"
-            : "-30% 0px -50% 0px",
-
-          threshold: 0,
-        }
-      );
-
-      stageElements.forEach((element) => {
-        stageObserver.observe(element);
-      });
-    }
-
-    createStageObserver();
-
-    mobileQuery.addEventListener("change", createStageObserver);
-
-    return () => {
-      stageObserver?.disconnect();
-
-      mobileQuery.removeEventListener("change", createStageObserver);
-    };
-  }, []);
+  useProcessAnimation({
+    rootRef: processRootRef,
+    activeStage,
+    setActiveStage,
+  });
 
   return (
-    <div className="process-page">
+    <div className="process-page" ref={processRootRef}>
       <section
         className="process-page__hero"
         aria-labelledby="process-page-title"
@@ -354,9 +313,11 @@ function Process() {
 
             <div
               className="process-line__progress"
-              aria-label={`Process stage ${activeStageIndex + 1} of ${
-                manufacturingStages.length
-              }`}
+              role="progressbar"
+              aria-label="Manufacturing process progress"
+              aria-valuemin="1"
+              aria-valuemax={manufacturingStages.length}
+              aria-valuenow={activeStageIndex + 1}
             >
               <span
                 style={{
