@@ -1,3 +1,11 @@
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+
+import {
+  revealOnScroll,
+  imageRevealOnScroll,
+  staggerOnScroll,
+} from "../../../animations";
 import { Link } from "react-router-dom";
 
 import "./EnquiryCTA.css";
@@ -27,6 +35,29 @@ const requirementDetails = [
 ];
 
 function EnquiryCTA() {
+  const panelRef = useRef(null);
+  const imageRef = useRef(null);
+  const requirementsRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      revealOnScroll(panelRef.current, "fadeUp", {
+        duration: 0.8,
+      });
+
+      imageRevealOnScroll(imageRef.current, {
+        duration: 1,
+      });
+
+      staggerOnScroll(requirementsRef.current?.children, "fadeUp", {
+        duration: 0.7,
+        stagger: 0.1,
+      });
+    }, panelRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <Section
       className="enquiry-cta"
@@ -34,9 +65,9 @@ function EnquiryCTA() {
       aria-labelledby="enquiry-cta-title"
     >
       <Container width="wide">
-        <div className="enquiry-cta__panel">
+        <div ref={panelRef} className="enquiry-cta__panel">
           <div className="enquiry-cta__media" aria-hidden="true">
-            <img src={productImage} alt="" />
+            <img ref={imageRef} src={productImage} alt="" />
           </div>
 
           <div className="enquiry-cta__sheet">
@@ -60,7 +91,7 @@ function EnquiryCTA() {
                 </p>
               </div>
 
-              <dl className="enquiry-cta__requirements">
+              <dl ref={requirementsRef} className="enquiry-cta__requirements">
                 {requirementDetails.map((detail, index) => (
                   <div className="enquiry-cta__requirement" key={detail.label}>
                     <span className="enquiry-cta__number" aria-hidden="true">

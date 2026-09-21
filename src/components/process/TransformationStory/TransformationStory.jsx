@@ -1,20 +1,52 @@
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+
 import { transformationStages } from "../../../data/process";
+import { revealOnScroll, staggerOnScroll } from "../../../animations";
+
 import Container from "../../layout/Container";
 import Section from "../../layout/Section";
 
 import "./TransformationStory.css";
 
 function TransformationStory() {
+  const sectionRef = useRef(null);
+
+  const introRef = useRef(null);
+  const stagesRef = useRef(null);
+  const noticeRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      revealOnScroll(introRef.current, "fadeUp", {
+        duration: 0.8,
+      });
+
+      staggerOnScroll(stagesRef.current?.children, "fadeUp", {
+        duration: 0.7,
+        stagger: 0.12,
+      });
+
+      revealOnScroll(noticeRef.current, "fadeUp", {
+        duration: 0.7,
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <Section
+      ref={sectionRef}
       className="transformation-story"
       tone="paper"
       aria-labelledby="transformation-title"
     >
       <Container width="wide">
-        <header className="transformation-story__intro">
+        <header ref={introRef} className="transformation-story__intro">
           <div>
             <p className="eyebrow">Material transformation</p>
+
             <h2 id="transformation-title" className="section-title">
               From residue to useful industrial heat.
             </h2>
@@ -26,7 +58,7 @@ function TransformationStory() {
           </p>
         </header>
 
-        <div className="transformation-story__stages">
+        <div ref={stagesRef} className="transformation-story__stages">
           {transformationStages.map((stage) => (
             <article
               key={stage.id}
@@ -46,13 +78,14 @@ function TransformationStory() {
 
               <div className="transformation-story__stage-content flow">
                 <h3>{stage.title}</h3>
+
                 <p>{stage.description}</p>
               </div>
             </article>
           ))}
         </div>
 
-        <p className="transformation-story__notice body-sm">
+        <p ref={noticeRef} className="transformation-story__notice body-sm">
           Detailed machinery and operating stages will be published after
           confirmation by the production team.
         </p>

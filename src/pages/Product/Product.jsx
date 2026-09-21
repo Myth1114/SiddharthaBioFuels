@@ -1,3 +1,8 @@
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+
+import { revealOnScroll } from "../../animations";
+
 import Container from "../../components/layout/Container";
 import ProductIntroduction from "../../components/product/ProductIntroduction/ProductIntroduction";
 import SEO from "../../components/seo/SEO";
@@ -7,6 +12,33 @@ import ProductExplorer from "../../pages/ProductExplorer/ProductExplorer";
 import "./Product.css";
 
 function Product() {
+  const introBarRef = useRef(null);
+  const introContentRef = useRef(null);
+  const introSummaryRef = useRef(null);
+  const catalogueHeaderRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      revealOnScroll(introBarRef.current, "fadeUp", {
+        duration: 0.7,
+      });
+
+      revealOnScroll(introContentRef.current, "fadeUp", {
+        duration: 0.8,
+      });
+
+      revealOnScroll(introSummaryRef.current, "fadeUp", {
+        duration: 0.8,
+        delay: 0.1,
+      });
+
+      revealOnScroll(catalogueHeaderRef.current, "fadeUp", {
+        duration: 0.8,
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
   return (
     <>
       <SEO {...seo.products} />
@@ -16,14 +48,17 @@ function Product() {
           aria-labelledby="product-page-title"
         >
           <Container width="wide">
-            <div className="product-page__intro-bar">
+            <div ref={introBarRef} className="product-page__intro-bar">
               <p>Product catalogue</p>
 
               <span>SBF / 06 industrial fuel products</span>
             </div>
 
             <div className="product-page__intro-layout">
-              <div className="product-page__intro-content">
+              <div
+                ref={introContentRef}
+                className="product-page__intro-content"
+              >
                 <p className="product-page__eyebrow">
                   Industrial biomass fuels
                 </p>
@@ -33,7 +68,10 @@ function Product() {
                 </h1>
               </div>
 
-              <div className="product-page__intro-summary">
+              <div
+                ref={introSummaryRef}
+                className="product-page__intro-summary"
+              >
                 <p className="product-page__description">
                   Explore briquette and pellet products manufactured from
                   mustard, sawdust and groundnut residues for compatible
@@ -67,7 +105,10 @@ function Product() {
           aria-labelledby="product-catalogue-title"
         >
           <Container width="wide">
-            <div className="product-page__catalogue-header">
+            <div
+              ref={catalogueHeaderRef}
+              className="product-page__catalogue-header"
+            >
               <div>
                 <p className="product-page__eyebrow">Available products</p>
 

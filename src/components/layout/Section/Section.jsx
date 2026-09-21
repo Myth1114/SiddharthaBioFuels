@@ -1,3 +1,5 @@
+import { forwardRef } from "react";
+
 const toneClasses = {
   paper: "section--paper",
   surface: "section--surface",
@@ -19,15 +21,19 @@ const spacingClasses = {
  * @param {string} [props.className=""]
  * @param {React.ReactNode} props.children
  */
-function Section({
-  as: Component = "section",
-  tone = "paper",
-  spacing = "default",
-  className = "",
-  children,
-  ...restProps
-}) {
+const Section = forwardRef(function Section(
+  {
+    as: Component = "section",
+    tone = "paper",
+    spacing = "default",
+    className = "",
+    children,
+    ...restProps
+  },
+  ref
+) {
   const toneClass = toneClasses[tone] ?? toneClasses.paper;
+
   const spacingClass = spacingClasses[spacing] ?? spacingClasses.default;
 
   const classes = ["section", toneClass, spacingClass, className]
@@ -35,10 +41,10 @@ function Section({
     .join(" ");
 
   return (
-    <Component className={classes} {...restProps}>
+    <Component ref={ref} className={classes} {...restProps}>
       {children}
     </Component>
   );
-}
+});
 
 export default Section;

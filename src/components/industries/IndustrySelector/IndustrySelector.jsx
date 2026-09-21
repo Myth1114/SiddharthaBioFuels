@@ -1,8 +1,9 @@
-import { useState } from "react";
+import React from "react";
+import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import gsap from "gsap";
 import "./IndustrySelector.css";
-
+import { revealOnScroll } from "../../../animations";
 import { industries } from "../../../data/industries";
 import Button from "../../ui/Button";
 import Container from "../../layout/Container";
@@ -21,8 +22,20 @@ function IndustrySelector() {
     (industry) => industry.id === selectedIndustry.id
   );
 
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      revealOnScroll(sectionRef.current, "fadeUp", {
+        duration: 0.8,
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
   return (
     <Section
+      ref={sectionRef}
       className="industry-showcase"
       aria-labelledby="industry-showcase-title"
     >
@@ -43,6 +56,7 @@ function IndustrySelector() {
         </div>
 
         <div
+          ref={sectionRef}
           className="industry-showcase__controls"
           aria-label="Select an industry"
         >

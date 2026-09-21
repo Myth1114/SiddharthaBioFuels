@@ -1,7 +1,7 @@
 .home-hero {
   display: grid;
   min-height: calc(100svh - var(--space-8));
-  align-items: end;
+  align-items: center;
   overflow: hidden;
 }
 
@@ -38,7 +38,6 @@
 
 .home-hero__content {
   --flow-space: var(--space-5);
-
   max-width: var(--text-measure);
 }
 
