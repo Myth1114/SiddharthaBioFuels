@@ -11,13 +11,14 @@ function SEO({
   noIndex = false,
 }) {
   useEffect(() => {
-    const fullTitle = path === "/" ? title : `${title} | Siddhartha Bio Fuels`;
+    const fullTitle = title;
 
     document.title = fullTitle;
 
     const canonicalUrl = `${SITE_URL}${path}`;
 
     updateMeta("description", description);
+
     updateMeta("robots", noIndex ? "noindex, nofollow" : "index, follow");
 
     updateMetaProperty("og:type", type);
