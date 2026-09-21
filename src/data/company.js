@@ -29,7 +29,24 @@ export const company = {
       href: "mailto:siddharthabiofuels@gmail.com",
     },
 
-    whatsapp: null,
+    whatsapp: {
+      display: "+977 9857839100",
+      href: "https://wa.me/9779857839100",
+    },
+  },
+
+  socialMedia: {
+    instagram: {
+      label: "Instagram",
+      handle: "@siddharthabiofuelspvt.ltd.07",
+      href: "https://www.instagram.com/siddharthabiofuelspvt.ltd.07",
+    },
+
+    facebook: {
+      label: "Facebook",
+      handle: "Siddhartha Bio Fuels Pvt. Ltd.",
+      href: "https://www.facebook.com/profile.php?id=61580746065530",
+    },
   },
 
   product: {

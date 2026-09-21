@@ -43,7 +43,7 @@ function HeroSection() {
               Request a Quote
             </Button>
 
-            <Button as={Link} to="/biomass-briquettes" variant="outline">
+            <Button as={Link} to="/products" variant="outline">
               Explore the Product
             </Button>
           </div>

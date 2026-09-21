@@ -3,9 +3,11 @@ import { useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Container from "../../components/layout/Container";
+import SEO from "../../components/seo/SEO";
 import Button from "../../components/ui/Button";
 
 import { manufacturingStages } from "../../data/process";
+import { seo } from "../../data/seo";
 import { useProcessAnimation } from "../../hooks/useProcessAnimation";
 
 import "./Process.css";
@@ -259,184 +261,191 @@ function Process() {
   });
 
   return (
-    <div className="process-page" ref={processRootRef}>
-      <section
-        className="process-page__hero"
-        aria-labelledby="process-page-title"
-      >
-        <Container width="wide">
-          <div className="process-page__hero-bar">
-            <p>Manufacturing process</p>
+    <>
+      <SEO {...seo.process} />
+      <div className="process-page" ref={processRootRef}>
+        <section
+          className="process-page__hero"
+          aria-labelledby="process-page-title"
+        >
+          <Container width="wide">
+            <div className="process-page__hero-bar">
+              <p>Manufacturing process</p>
 
-            <span>SBF / Process overview</span>
-          </div>
-
-          <div className="process-page__hero-layout">
-            <div>
-              <p className="process-page__eyebrow">From residue to fuel</p>
-
-              <h1 className="process-page__title" id="process-page-title">
-                Biomass transformed into dense industrial fuel.
-              </h1>
+              <span>SBF / Process overview</span>
             </div>
 
-            <div className="process-page__hero-copy">
-              <p>
-                Follow the general transformation of agricultural and wood
-                residue into briquette and pellet forms prepared for compatible
-                industrial heating applications.
-              </p>
+            <div className="process-page__hero-layout">
+              <div>
+                <p className="process-page__eyebrow">From residue to fuel</p>
 
-              <p className="process-page__hero-note">
-                This visual explains the production stages. It does not
-                represent the exact layout or machinery of the company’s
-                manufacturing facility.
-              </p>
+                <h1 className="process-page__title" id="process-page-title">
+                  Biomass transformed into dense industrial fuel.
+                </h1>
+              </div>
+
+              <div className="process-page__hero-copy">
+                <p>
+                  Follow the general transformation of agricultural and wood
+                  residue into briquette and pellet forms prepared for
+                  compatible industrial heating applications.
+                </p>
+
+                <p className="process-page__hero-note">
+                  This visual explains the production stages. It does not
+                  represent the exact layout or machinery of the company’s
+                  manufacturing facility.
+                </p>
+              </div>
             </div>
-          </div>
-        </Container>
-      </section>
+          </Container>
+        </section>
 
-      <section
-        className="process-line"
-        aria-labelledby="transformation-line-title"
-      >
-        <Container width="wide">
-          <div className="process-line__heading">
-            <div>
-              <p className="process-page__eyebrow">The transformation line</p>
+        <section
+          className="process-line"
+          aria-labelledby="transformation-line-title"
+        >
+          <Container width="wide">
+            <div className="process-line__heading">
+              <div>
+                <p className="process-page__eyebrow">The transformation line</p>
 
-              <h2 id="transformation-line-title">
-                Seven stages. One continuous material journey.
-              </h2>
-            </div>
+                <h2 id="transformation-line-title">
+                  Seven stages. One continuous material journey.
+                </h2>
+              </div>
 
-            <div
-              className="process-line__progress"
-              role="progressbar"
-              aria-label="Manufacturing process progress"
-              aria-valuemin="1"
-              aria-valuemax={manufacturingStages.length}
-              aria-valuenow={activeStageIndex + 1}
-            >
-              <span
-                style={{
-                  width: `${
-                    ((activeStageIndex + 1) / manufacturingStages.length) * 100
-                  }%`,
-                }}
-              />
-            </div>
-          </div>
-
-          <div className="process-line__layout">
-            <div className="process-line__visual-column">
-              <div className="process-line__visual-sticky">
-                <ProcessVisual activeStage={activeStage} />
+              <div
+                className="process-line__progress"
+                role="progressbar"
+                aria-label="Manufacturing process progress"
+                aria-valuemin="1"
+                aria-valuemax={manufacturingStages.length}
+                aria-valuenow={activeStageIndex + 1}
+              >
+                <span
+                  style={{
+                    width: `${
+                      ((activeStageIndex + 1) / manufacturingStages.length) *
+                      100
+                    }%`,
+                  }}
+                />
               </div>
             </div>
 
-            <div className="process-line__stages">
-              {manufacturingStages.map((stage) => {
-                const isActive = activeStage === stage.id;
+            <div className="process-line__layout">
+              <div className="process-line__visual-column">
+                <div className="process-line__visual-sticky">
+                  <ProcessVisual activeStage={activeStage} />
+                </div>
+              </div>
 
-                return (
-                  <article
-                    className={[
-                      "process-stage",
-                      isActive ? "process-stage--active" : "",
-                    ]
-                      .filter(Boolean)
-                      .join(" ")}
-                    id={stage.id}
-                    key={stage.id}
-                    data-manufacturing-stage
-                  >
-                    <div className="process-stage__number">
-                      <span>{stage.number}</span>
+              <div className="process-line__stages">
+                {manufacturingStages.map((stage) => {
+                  const isActive = activeStage === stage.id;
 
-                      <i aria-hidden="true" />
-                    </div>
+                  return (
+                    <article
+                      className={[
+                        "process-stage",
+                        isActive ? "process-stage--active" : "",
+                      ]
+                        .filter(Boolean)
+                        .join(" ")}
+                      id={stage.id}
+                      key={stage.id}
+                      data-manufacturing-stage
+                    >
+                      <div className="process-stage__number">
+                        <span>{stage.number}</span>
 
-                    <div className="process-stage__content">
-                      <p className="process-stage__label">{stage.label}</p>
+                        <i aria-hidden="true" />
+                      </div>
 
-                      <h3>{stage.title}</h3>
+                      <div className="process-stage__content">
+                        <p className="process-stage__label">{stage.label}</p>
 
-                      <p className="process-stage__description">
-                        {stage.description}
-                      </p>
+                        <h3>{stage.title}</h3>
 
-                      <p className="process-stage__details">{stage.details}</p>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        </Container>
-      </section>
+                        <p className="process-stage__description">
+                          {stage.description}
+                        </p>
 
-      <section
-        className="process-page__verification"
-        aria-labelledby="process-verification-title"
-      >
-        <Container width="wide">
-          <div className="process-page__verification-layout">
-            <div>
-              <p className="process-page__eyebrow">Process information</p>
-
-              <h2 id="process-verification-title">
-                Technical measurements require verification.
-              </h2>
-            </div>
-
-            <div className="process-page__verification-content">
-              <p>
-                Exact machine settings, drying conditions, production
-                tolerances, inspection methods and processing capacity will be
-                published only after they are officially reviewed and approved.
-              </p>
-
-              <div className="process-page__verification-status">
-                <span aria-hidden="true" />
-                Verification pending
+                        <p className="process-stage__details">
+                          {stage.details}
+                        </p>
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
             </div>
-          </div>
-        </Container>
-      </section>
+          </Container>
+        </section>
 
-      <section className="process-page__cta">
-        <Container width="wide">
-          <div className="process-page__cta-layout">
-            <div>
-              <p className="process-page__eyebrow">Industrial fuel enquiry</p>
+        <section
+          className="process-page__verification"
+          aria-labelledby="process-verification-title"
+        >
+          <Container width="wide">
+            <div className="process-page__verification-layout">
+              <div>
+                <p className="process-page__eyebrow">Process information</p>
 
-              <h2>Discuss your biomass-fuel requirement.</h2>
-            </div>
+                <h2 id="process-verification-title">
+                  Technical measurements require verification.
+                </h2>
+              </div>
 
-            <div className="process-page__cta-content">
-              <p>
-                Share your required product, estimated quantity, application and
-                delivery location with our team.
-              </p>
+              <div className="process-page__verification-content">
+                <p>
+                  Exact machine settings, drying conditions, production
+                  tolerances, inspection methods and processing capacity will be
+                  published only after they are officially reviewed and
+                  approved.
+                </p>
 
-              <div className="process-page__cta-actions">
-                <Button as={Link} to="/request-a-quote">
-                  Start your requirement
-                </Button>
-
-                <Link className="process-page__product-link" to="/products">
-                  Explore products
-                  <span aria-hidden="true">→</span>
-                </Link>
+                <div className="process-page__verification-status">
+                  <span aria-hidden="true" />
+                  Verification pending
+                </div>
               </div>
             </div>
-          </div>
-        </Container>
-      </section>
-    </div>
+          </Container>
+        </section>
+
+        <section className="process-page__cta">
+          <Container width="wide">
+            <div className="process-page__cta-layout">
+              <div>
+                <p className="process-page__eyebrow">Industrial fuel enquiry</p>
+
+                <h2>Discuss your biomass-fuel requirement.</h2>
+              </div>
+
+              <div className="process-page__cta-content">
+                <p>
+                  Share your required product, estimated quantity, application
+                  and delivery location with our team.
+                </p>
+
+                <div className="process-page__cta-actions">
+                  <Button as={Link} to="/request-a-quote">
+                    Start your requirement
+                  </Button>
+
+                  <Link className="process-page__product-link" to="/products">
+                    Explore products
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </Container>
+        </section>
+      </div>
+    </>
   );
 }
 

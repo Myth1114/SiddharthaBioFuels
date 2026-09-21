@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import StructuredData from "../../seo/StructuredData";
 import Footer from "../Footer";
 
 import Header from "../Header/Header";
@@ -6,6 +7,7 @@ import Header from "../Header/Header";
 function AppShell() {
   return (
     <>
+      <StructuredData />
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>

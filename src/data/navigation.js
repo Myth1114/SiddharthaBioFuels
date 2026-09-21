@@ -12,9 +12,10 @@ export const primaryNavigation = [
     to: "/manufacturing-process",
   },
   {
-    label: "Quality",
-    to: "/quality-specifications",
+    label: "Sustainability",
+    to: "/sustainability",
   },
+
   {
     label: "About",
     to: "/about",
@@ -27,8 +28,8 @@ export const primaryNavigation = [
 
 export const secondaryNavigation = [
   {
-    label: "Sustainability",
-    to: "/sustainability",
+    label: "Quality & Specifications",
+    to: "/quality-specifications",
   },
   {
     label: "Resources",
