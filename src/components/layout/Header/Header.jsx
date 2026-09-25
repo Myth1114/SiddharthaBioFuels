@@ -3,10 +3,10 @@ import { createPortal } from "react-dom";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 import "./Header.css";
-
+import logo from "/logo.png";
 import { primaryNavigation } from "../../../data/navigation";
-import Button from "../../ui/Button";
-import Container from "../Container";
+import Button from "../../ui/Button/Button";
+import Container from "../Container/Container";
 
 function getDesktopLinkClass({ isActive }) {
   return ["site-header__link", isActive ? "site-header__link--active" : ""]
@@ -110,8 +110,17 @@ function Header() {
               to="/"
               aria-label="Siddhartha Bio Fuels home"
             >
-              <span className="site-header__brand-primary">Siddhartha</span>
-              <span className="site-header__brand-secondary">Bio Fuels</span>
+              <img
+                className="site-header__logo"
+                src={logo}
+                alt="Siddhartha Bio Fuels"
+                aria-hidden="true"
+              />
+
+              <span className="site-header__brand-text">
+                <span className="site-header__brand-primary">Siddhartha</span>
+                <span className="site-header__brand-secondary">Bio Fuels</span>
+              </span>
             </Link>
 
             <nav
@@ -178,8 +187,17 @@ function Header() {
             >
               <div className="mobile-menu__header">
                 <div className="mobile-menu__brand" id="mobile-menu-title">
-                  <span>Siddhartha</span>
-                  <span>Bio Fuels</span>
+                  <img
+                    className="mobile-menu__logo"
+                    src={logo}
+                    alt="Siddhartha Bio Fuels"
+                    aria-hidden="true"
+                  />
+
+                  <span className="mobile-menu__brand-text">
+                    <span>Siddhartha</span>
+                    <span>Bio Fuels</span>
+                  </span>
                 </div>
 
                 <button
