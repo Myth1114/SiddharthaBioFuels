@@ -1,16 +1,16 @@
 const SITE_URL = "https://www.siddharthabiofuels.com.np";
 
 const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "LocalBusiness",
   "@id": `${SITE_URL}/#organization`,
   name: "Siddhartha Bio Fuels Pvt. Ltd.",
   alternateName: "Siddhartha Bio Fuels",
   url: SITE_URL,
   logo: `${SITE_URL}/logo.png`,
-  foundingDate: "2025",
+  image: `${SITE_URL}/og-image.png`,
   description:
     "Siddhartha Bio Fuels Pvt. Ltd. produces non-carbonized biomass briquettes from agricultural and forest residues for industries in Nepal.",
+  foundingDate: "2025",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Omsatiya-4",
